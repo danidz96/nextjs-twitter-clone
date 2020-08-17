@@ -1,29 +1,21 @@
-import { fonts } from '../../styles/theme';
+import PropTypes from 'prop-types';
+import styles, { globalStyles } from './styles';
 
 export default function AppLayout({ children }) {
   return (
     <>
-      <main>{children}</main>
+      <div>
+        <main>{children}</main>
+      </div>
 
+      <style jsx>{styles}</style>
       <style jsx global>
-        {`
-          html,
-          body {
-            padding: 0;
-            margin: 0;
-            font-family: ${fonts.base};
-          }
-
-          a {
-            color: inherit;
-            text-decoration: none;
-          }
-
-          * {
-            box-sizing: border-box;
-          }
-        `}
+        {globalStyles}
       </style>
     </>
   );
 }
+
+AppLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

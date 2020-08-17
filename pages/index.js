@@ -1,52 +1,51 @@
 import Head from 'next/head';
-import Link from 'next/link';
+import { colors } from '../styles/theme';
+import Button from '../components/Button';
 
 export default function Home() {
   return (
-    <div className="container">
+    <>
       <Head>
         <title>Devter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="main">
-        <h1 className="title">Devter</h1>
-        <nav>
-          <Link href="/timeline">
-            <a>Timeline</a>
-          </Link>
-        </nav>
-        <nav />
-      </main>
+      <section>
+        <img src="/devter-logo.png" alt="Devter Logo" />
+        <h1>Devter</h1>
+        <h2>
+          Talk about developent with developers
+          <span aria-label="tech emojis" role="img">
+            👩‍💻👨‍💻
+          </span>
+        </h2>
+        <div>
+          <Button>Login with GitHub</Button>
+        </div>
+      </section>
 
       <style jsx>
         {`
-          .container {
-            min-height: 100vh;
-            padding: 0 0.5rem;
+          img {
+            width: 12rem;
+          }
+          h1 {
+            font-size: 2.4rem;
+            color: ${colors.primary};
+          }
+          h2 {
+            font-size: 1.6rem;
+            color: ${colors.secondary};
+          }
+
+          section {
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
           }
-
-          .main {
-            padding: 5rem 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .title {
-            color: #0070f3;
-            text-decoration: none;
-            margin: 0;
-            line-height: 1.15;
-            font-size: 4rem;
-            text-align: center;
-          }
         `}
       </style>
-    </div>
+    </>
   );
 }
