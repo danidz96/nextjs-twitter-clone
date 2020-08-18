@@ -12,9 +12,11 @@ export default function Home() {
   }, []);
 
   const handleClick = () => {
-    loginWithGitHub().then((appUser) => {
-      setUser(appUser);
-    });
+    loginWithGitHub()
+      .then((appUser) => {
+        setUser(appUser);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -39,7 +41,7 @@ export default function Home() {
         )}
         {user?.avatar && (
           <div>
-            <img src={user.avatar} />
+            <img src={user.avatar} alt="github user avatar" />
             <strong>{user.username}</strong>
           </div>
         )}
