@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { colors } from '../styles/theme';
 import Button from '../components/Button';
 import { loginWithGitHub, onAuthStateChanged } from '../firebase/firebase';
+import Avatar from '../components/Avatar';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -41,8 +42,7 @@ export default function Home() {
         )}
         {user?.avatar && (
           <div>
-            <img src={user.avatar} alt="github user avatar" />
-            <strong>{user.username}</strong>
+            <Avatar alt={user.username} src={user.avatar} text={user.username} withText />
           </div>
         )}
       </section>
