@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Avatar from '../components/Avatar';
 import { colors } from '../styles/theme';
 import Button from '../components/Button';
+import GitHub from '../components/Icons/GitHub';
 import { loginWithGitHub, onAuthStateChanged } from '../firebase/firebase';
-import Avatar from '../components/Avatar';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
@@ -37,7 +38,10 @@ export default function Home() {
         </h2>
         {user === null && (
           <div>
-            <Button onClick={handleClick}>Login with GitHub</Button>
+            <Button onClick={handleClick}>
+              <GitHub fill="#fff" width="24" height="24" />
+              Login with GitHub
+            </Button>
           </div>
         )}
         {user?.avatar && (
