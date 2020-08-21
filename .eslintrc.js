@@ -21,5 +21,6 @@ module.exports = {
     'react/prop-types': 'warn',
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react/require-default-props': 'off',
   },
 };
