@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { onAuthStateChanged } from '../firebase/firebase';
 
 export const USER_STATES = {
@@ -8,10 +9,15 @@ export const USER_STATES = {
 
 export default function useUser() {
   const [user, setUser] = useState(USER_STATES.NOT_KNOWN);
+  const router = useRouter();
 
   useEffect(() => {
     onAuthStateChanged(setUser);
   }, []);
+
+  useEffect(() => {
+    user === USER_STATES.NOT_LOGGED && router.push('/');
+  }, [user]);
 
   return user;
 }
