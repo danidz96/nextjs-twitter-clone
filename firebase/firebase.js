@@ -55,3 +55,22 @@ export const addDevit = ({ avatar, content, userId, userName }) => {
     sharedCount: 0,
   });
 };
+
+export const fetchLatestDevits = () => {
+  return db
+    .collection('devits')
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((doc) => {
+        const data = doc.data();
+        const { id } = doc;
+        const { createdAt } = data;
+        const normalizedCreatedAt = new Date(createdAt.seconds).toString();
+        return {
+          ...data,
+          id,
+          createdAt: normalizedCreatedAt,
+        };
+      });
+    });
+};
