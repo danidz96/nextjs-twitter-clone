@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import useUser from '../../../hooks/useUser';
 import { addDevit } from '../../../firebase/firebase';
+import styles from './styles';
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -49,19 +50,7 @@ export default function ComposeTweet() {
           Devit
         </Button>
       </form>
-      <style jsx>
-        {`
-          textarea {
-            border: 0;
-            font-size: 2.1rem;
-            min-height: 15rem;
-            padding: 1.5rem;
-            outline: none;
-            resize: none;
-            width: 100%;
-          }
-        `}
-      </style>
+      <style jsx>{styles}</style>
     </>
   );
 }
