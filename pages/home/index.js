@@ -27,7 +27,7 @@ export default function HomePage() {
           />
         ))}
       </section>
-      <nav>nav</nav>
+      <nav />
       <style jsx>{styles}</style>
     </div>
   );
