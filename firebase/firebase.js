@@ -20,12 +20,13 @@ if (!firebase.apps.length) {
 export const auth = firebase.auth();
 
 const mapUserFromFirebaseAuthToUser = (user) => {
-  const { displayName, email, photoURL } = user;
+  const { displayName, email, photoURL, uid } = user;
 
   return {
     avatar: photoURL,
     username: displayName,
     email,
+    uid,
   };
 };
 
