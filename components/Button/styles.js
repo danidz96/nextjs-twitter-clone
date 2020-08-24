@@ -14,6 +14,12 @@ export default css`
     padding: 1rem 2.4rem;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    user-select: none;
+  }
+
+  button[disabled] {
+    pointer-events: none;
+    opacity: 0.3;
   }
 
   button > :global(svg) {
