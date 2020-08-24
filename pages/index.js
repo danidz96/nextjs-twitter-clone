@@ -1,19 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import BounceLoader from 'react-spinners/BounceLoader';
 import { colors } from '../styles/theme';
 import Button from '../components/Button';
 import GitHub from '../components/Icons/GitHub';
-import { loginWithGitHub, onAuthStateChanged } from '../firebase/firebase';
+import { loginWithGitHub } from '../firebase/firebase';
+import useUser, { USER_STATES } from '../hooks/useUser';
 
 export default function Home() {
-  const [user, setUser] = useState(undefined);
+  const user = useUser();
   const router = useRouter();
-
-  useEffect(() => {
-    onAuthStateChanged(setUser);
-  }, []);
 
   useEffect(() => {
     user && router.replace('/home');
@@ -38,7 +35,7 @@ export default function Home() {
             👩‍💻👨‍💻
           </span>
         </h2>
-        {user === null && (
+        {user === USER_STATES.NOT_LOGGED && (
           <div>
             <Button onClick={handleClick}>
               <GitHub fill="#fff" width="24" height="24" />
@@ -46,7 +43,7 @@ export default function Home() {
             </Button>
           </div>
         )}
-        {user === undefined && <BounceLoader size={60} color="#0099ff" loading />}
+        {user === USER_STATES.NOT_KNOWN && <BounceLoader size={60} color="#0099ff" loading />}
       </section>
 
       <style jsx>
