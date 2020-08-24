@@ -11,6 +11,7 @@ export default function Devit({ avatar, userName, content, createdAt, id }) {
         </div>
         <section>
           <strong>{userName}</strong>
+          <span> · </span>
           <date>{createdAt}</date>
           <p>{content}</p>
         </section>
