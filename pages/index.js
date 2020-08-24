@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Avatar from '../components/Avatar';
+import { useRouter } from 'next/router';
+import BounceLoader from 'react-spinners/BounceLoader';
 import { colors } from '../styles/theme';
 import Button from '../components/Button';
 import GitHub from '../components/Icons/GitHub';
@@ -8,17 +9,18 @@ import { loginWithGitHub, onAuthStateChanged } from '../firebase/firebase';
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
+  const router = useRouter();
 
   useEffect(() => {
     onAuthStateChanged(setUser);
   }, []);
 
+  useEffect(() => {
+    user && router.replace('/home');
+  }, [user]);
+
   const handleClick = () => {
-    loginWithGitHub()
-      .then((appUser) => {
-        setUser(appUser);
-      })
-      .catch((err) => console.log(err));
+    loginWithGitHub().catch((err) => console.log(err));
   };
 
   return (
@@ -44,11 +46,7 @@ export default function Home() {
             </Button>
           </div>
         )}
-        {user?.avatar && (
-          <div>
-            <Avatar alt={user.username} src={user.avatar} text={user.username} withText />
-          </div>
-        )}
+        {user === undefined && <BounceLoader size={60} color="#0099ff" loading />}
       </section>
 
       <style jsx>
