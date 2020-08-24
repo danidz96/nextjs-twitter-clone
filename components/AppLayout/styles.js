@@ -50,7 +50,9 @@ export default css`
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.08);
     width: 100%;
     height: 100%;
+    position: relative;
   }
+
   @media (min-width: ${breakpoints.mobile}) {
     main {
       height: 90vh;
