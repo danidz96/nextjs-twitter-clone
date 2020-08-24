@@ -18,6 +18,7 @@ if (!firebase.apps.length) {
 }
 
 export const auth = firebase.auth();
+const db = firebase.firestore();
 
 const mapUserFromFirebaseAuthToUser = (user) => {
   const { displayName, email, photoURL, uid } = user;
@@ -41,4 +42,16 @@ export const onAuthStateChanged = (onChange) => {
 export const loginWithGitHub = () => {
   const githubProvider = new firebase.auth.GithubAuthProvider();
   return auth.signInWithPopup(githubProvider);
+};
+
+export const addDevit = ({ avatar, content, userId, userName }) => {
+  return db.collection('devits').add({
+    avatar,
+    content,
+    userId,
+    userName,
+    createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+    likesCount: 0,
+    sharedCount: 0,
+  });
 };
