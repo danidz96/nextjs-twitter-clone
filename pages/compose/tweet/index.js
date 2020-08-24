@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ClipLoader from 'react-spinners/ClipLoader';
 import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import useUser from '../../../hooks/useUser';
