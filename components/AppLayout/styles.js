@@ -34,6 +34,11 @@ export const globalStyles = css.global`
   * {
     box-sizing: border-box;
   }
+
+  textarea,
+  input {
+    font-family: ${fonts.base};
+  }
 `;
 
 export default css`
@@ -51,6 +56,7 @@ export default css`
     width: 100%;
     height: 100%;
     position: relative;
+    overflow-y: auto;
   }
 
   @media (min-width: ${breakpoints.mobile}) {

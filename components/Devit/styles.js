@@ -11,6 +11,11 @@ export default css`
     padding-right: 1rem;
   }
 
+  date {
+    color: #555;
+    font-size: 1.4rem;
+  }
+
   p {
     margin: 0;
   }
