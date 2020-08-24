@@ -4,7 +4,7 @@ import styles from './styles';
 export default function Button({ children, onClick, disabled }) {
   return (
     <>
-      <button type="button" disabled={disabled} onClick={onClick}>
+      <button disabled={disabled} onClick={onClick}>
         {children}
       </button>
 
@@ -15,6 +15,6 @@ export default function Button({ children, onClick, disabled }) {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };

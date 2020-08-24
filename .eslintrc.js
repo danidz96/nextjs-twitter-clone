@@ -22,6 +22,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/require-default-props': 'off',
+    'react/button-has-type': 'off',
     'no-unused-expressions': 'off',
   },
 };
