@@ -11,7 +11,7 @@ export default css`
     padding-right: 1rem;
   }
 
-  date {
+  .date {
     color: #555;
     font-size: 1.4rem;
   }
