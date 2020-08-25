@@ -24,5 +24,6 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/button-has-type': 'off',
     'no-unused-expressions': 'off',
+    'no-restricted-syntax': 'off',
   },
 };
