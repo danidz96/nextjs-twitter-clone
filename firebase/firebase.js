@@ -65,12 +65,11 @@ export const fetchLatestDevits = () => {
         const data = doc.data();
         const { id } = doc;
         const { createdAt } = data;
-        const date = new Date(createdAt.seconds * 1000);
-        const normalizedCreatedAt = new Intl.DateTimeFormat('es-ES').format(date);
+
         return {
           ...data,
           id,
-          createdAt: normalizedCreatedAt,
+          createdAt: +createdAt.toDate(),
         };
       });
     });

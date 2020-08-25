@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import styles from './styles';
+import useTimeAgo from '../../hooks/useTimeAgo';
 
 export default function Devit({ avatar, userName, content, createdAt, id }) {
+  const timeago = useTimeAgo(createdAt);
   return (
     <>
       <article>
@@ -12,7 +14,7 @@ export default function Devit({ avatar, userName, content, createdAt, id }) {
         <section>
           <strong>{userName}</strong>
           <span> · </span>
-          <date>{createdAt}</date>
+          <span className="date">{timeago}</span>
           <p>{content}</p>
         </section>
       </article>
