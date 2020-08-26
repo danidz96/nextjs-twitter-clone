@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import useUser from '../../../hooks/useUser';
@@ -44,6 +45,9 @@ export default function ComposeTweet() {
 
   return (
     <>
+      <Head>
+        <title>Create a new Devit / Devter</title>
+      </Head>
       <form onSubmit={handleSubmit}>
         <textarea onChange={handleChange} value={message} placeholder="What's happening?" />
         <Button type="submit" disabled={isButtonDisabled}>
