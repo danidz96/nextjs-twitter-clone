@@ -50,6 +50,8 @@ export default css`
   }
 
   main {
+    display: flex;
+    flex-direction: column;
     background: #fff;
     border-radius: 0.8rem;
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.08);
