@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import useUser from '../../../hooks/useUser';
 import { addDevit } from '../../../firebase/firebase';
-import styles from './styles';
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -13,9 +12,22 @@ const COMPOSE_STATES = {
   ERROR: -1,
 };
 
+const DRAG_IMAGE_STATES = {
+  ERROR: -1,
+  NONE: 0,
+  DRAG_OVER: 1,
+  UPLOADING: 2,
+  COMPLETED: 3,
+};
+
 export default function ComposeTweet() {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState(COMPOSE_STATES.USER_NOT_KNOWN);
+
+  const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE);
+  const [task, setTask] = useState(null);
+  const [imgUrl, setImgUrl] = useState(null);
+
   const user = useUser();
   const router = useRouter();
 
@@ -41,6 +53,18 @@ export default function ComposeTweet() {
       });
   };
 
+  const handleDragEnter = () => {
+    setDrag(DRAG_IMAGE_STATES.DRAG_OVER);
+  };
+
+  const handleDragLeave = () => {
+    setDrag(DRAG_IMAGE_STATES.NONE);
+  };
+
+  const handleDrop = () => {
+    setDrag(DRAG_IMAGE_STATES.DRAG_OVER);
+  };
+
   const isButtonDisabled = !message.length || status === COMPOSE_STATES.LOADING;
 
   return (
@@ -49,12 +73,39 @@ export default function ComposeTweet() {
         <title>Create a new Devit / Devter</title>
       </Head>
       <form onSubmit={handleSubmit}>
-        <textarea onChange={handleChange} value={message} placeholder="What's happening?" />
-        <Button type="submit" disabled={isButtonDisabled}>
-          Devit
-        </Button>
+        <textarea
+          onChange={handleChange}
+          onDragEnter={handleDragEnter}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          value={message}
+          placeholder="What's happening?"
+        />
+        <div>
+          <Button type="submit" disabled={isButtonDisabled}>
+            Devit
+          </Button>
+        </div>
       </form>
-      <style jsx>{styles}</style>
+      <style jsx>
+        {`
+          div {
+            padding: 1.5rem;
+          }
+          textarea {
+            border: ${drag === DRAG_IMAGE_STATES.DRAG_OVER
+              ? '3px  dashed #09f'
+              : '3px solid transparent'};
+            border-radius: 1rem;
+            font-size: 2.1rem;
+            min-height: 15rem;
+            padding: 1.5rem;
+            outline: none;
+            resize: none;
+            width: 100%;
+          }
+        `}
+      </style>
     </>
   );
 }
