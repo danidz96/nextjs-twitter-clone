@@ -27,6 +27,6 @@ Devit.propTypes = {
   avatar: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  createdAt: PropTypes.string,
+  createdAt: PropTypes.number,
   id: PropTypes.string.isRequired,
 };
