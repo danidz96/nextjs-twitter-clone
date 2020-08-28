@@ -11,6 +11,13 @@ export default css`
     padding-right: 1rem;
   }
 
+  img {
+    margin-top: 1rem;
+    border-radius: 1rem;
+    height: auto;
+    width: 100%;
+  }
+
   .date {
     color: #555;
     font-size: 1.4rem;
