@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import useUser from '../../../hooks/useUser';
 import { addDevit, uploadImage } from '../../../firebase/firebase';
+import Avatar from '../../../components/Avatar';
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -92,27 +93,32 @@ export default function ComposeTweet() {
       <Head>
         <title>Create a new Devit / Devter</title>
       </Head>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          onChange={handleChange}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          value={message}
-          placeholder="What's happening?"
-        />
-        {imgUrl && (
-          <section>
-            <button onClick={() => setImgUrl(null)}>X</button>
-            <img alt={imgUrl} src={imgUrl} />
-          </section>
-        )}
-        <div>
-          <Button type="submit" disabled={isButtonDisabled}>
-            Devit
-          </Button>
-        </div>
-      </form>
+      <section className="form-container">
+        <section className="avatar-container">
+          {user && <Avatar alt={user.userName} src={user.avatar} />}
+        </section>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            onChange={handleChange}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            value={message}
+            placeholder="What's happening?"
+          />
+          {imgUrl && (
+            <section className="remove-img">
+              <button onClick={() => setImgUrl(null)}>X</button>
+              <img alt={imgUrl} src={imgUrl} />
+            </section>
+          )}
+          <div>
+            <Button type="submit" disabled={isButtonDisabled}>
+              Devit
+            </Button>
+          </div>
+        </form>
+      </section>
       <style jsx>
         {`
           div {
@@ -123,7 +129,16 @@ export default function ComposeTweet() {
             padding: 1rem;
           }
 
-          section {
+          .avatar-container {
+            padding: 2rem 0 0 1rem;
+          }
+
+          .form-container {
+            display: flex;
+            align-items: flex-start;
+          }
+
+          .remove-img {
             position: relative;
           }
 
