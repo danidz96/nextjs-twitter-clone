@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import styles from './styles';
@@ -14,7 +15,11 @@ export default function Devit({ avatar, userName, content, createdAt, img, id })
         <section>
           <strong>{userName}</strong>
           <span> · </span>
-          <span className="date">{timeago}</span>
+          <Link href="/status/[id]" as={`/status/${id}`}>
+            <a>
+              <time className="date">{timeago}</time>
+            </a>
+          </Link>
           <p>{content}</p>
           {img && <img alt={img} src={img} />}
         </section>

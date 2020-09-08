@@ -18,9 +18,14 @@ export default css`
     width: 100%;
   }
 
-  .date {
+  time {
     color: #555;
     font-size: 1.4rem;
+    text-decoration: none;
+  }
+
+  time:hover {
+    text-decoration: underline;
   }
 
   p {
