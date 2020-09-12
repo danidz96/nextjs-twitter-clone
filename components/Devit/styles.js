@@ -6,6 +6,10 @@ export default css`
     display: flex;
     border-bottom: 2px solid #eaf7ff;
   }
+  article:hover {
+    cursor: pointer;
+    background: #f5f8fa;
+  }
 
   div {
     padding-right: 1rem;
