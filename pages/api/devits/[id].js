@@ -10,7 +10,14 @@ export default (request, response) => {
     .get()
     .then((doc) => {
       const data = doc.data();
-      response.json(data);
+      const docId = doc.id;
+      const { createdAt } = data;
+
+      response.json({
+        ...data,
+        id: docId,
+        createdAt: +createdAt.toDate(),
+      });
     })
     .catch(() => response.status(404).end());
 };
