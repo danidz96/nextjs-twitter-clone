@@ -1,7 +1,12 @@
+import { useRouter } from 'next/router';
 import Devit from '../../components/Devit';
 import { firestore } from '../../firebase/admin';
 
 export default function DevitPage(props) {
+  const router = useRouter();
+
+  if (router.isFallback) return <span>Loading...</span>;
+
   return (
     <>
       <Devit {...props} />
@@ -12,7 +17,7 @@ export default function DevitPage(props) {
 export const getStaticPaths = async () => {
   return {
     paths: [{ params: { id: 'PRs1982WqHGeLDKk1sJB' } }],
-    fallback: false,
+    fallback: true,
   };
 };
 
