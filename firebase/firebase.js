@@ -57,6 +57,28 @@ export const addDevit = ({ avatar, content, img, userId, userName }) => {
   });
 };
 
+const mapDevitFromFirebaseToDevitObject = (doc) => {
+  const data = doc.data();
+  const { id } = doc;
+  const { createdAt } = data;
+
+  return {
+    ...data,
+    id,
+    createdAt: +createdAt.toDate(),
+  };
+};
+
+export const listenLatestDevits = (callback) => {
+  return db
+    .collection('devits')
+    .orderBy('createdAt', 'desc')
+    .onSnapshot(({ docs }) => {
+      const newDevits = docs.map(mapDevitFromFirebaseToDevitObject);
+      callback(newDevits);
+    });
+};
+
 export const fetchLatestDevits = () => {
   return db
     .collection('devits')
@@ -64,15 +86,7 @@ export const fetchLatestDevits = () => {
     .get()
     .then((snapshot) => {
       return snapshot.docs.map((doc) => {
-        const data = doc.data();
-        const { id } = doc;
-        const { createdAt } = data;
-
-        return {
-          ...data,
-          id,
-          createdAt: +createdAt.toDate(),
-        };
+        return mapDevitFromFirebaseToDevitObject(doc);
       });
     });
 };
