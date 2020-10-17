@@ -6,6 +6,10 @@ export default css`
     display: flex;
     border-bottom: 2px solid #eaf7ff;
   }
+  article:hover {
+    cursor: pointer;
+    background: #f5f8fa;
+  }
 
   div {
     padding-right: 1rem;
@@ -18,9 +22,14 @@ export default css`
     width: 100%;
   }
 
-  .date {
+  time {
     color: #555;
     font-size: 1.4rem;
+    text-decoration: none;
+  }
+
+  time:hover {
+    text-decoration: underline;
   }
 
   p {
