@@ -127,6 +127,7 @@ export default function ComposeTweet() {
 
           form {
             padding: 1rem;
+            width: 100%;
           }
 
           .avatar-container {
