@@ -73,21 +73,10 @@ export const listenLatestDevits = (callback) => {
   return db
     .collection('devits')
     .orderBy('createdAt', 'desc')
+    .limit(20)
     .onSnapshot(({ docs }) => {
       const newDevits = docs.map(mapDevitFromFirebaseToDevitObject);
       callback(newDevits);
-    });
-};
-
-export const fetchLatestDevits = () => {
-  return db
-    .collection('devits')
-    .orderBy('createdAt', 'desc')
-    .get()
-    .then((snapshot) => {
-      return snapshot.docs.map((doc) => {
-        return mapDevitFromFirebaseToDevitObject(doc);
-      });
     });
 };
 
