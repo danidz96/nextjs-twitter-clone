@@ -4,7 +4,7 @@ export default css`
   article {
     padding: 1rem 1.5rem;
     display: flex;
-    border-bottom: 2px solid #eaf7ff;
+    border-bottom: 2px solid #eee;
   }
   article:hover {
     cursor: pointer;

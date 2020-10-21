@@ -4,9 +4,11 @@ import { useRouter } from 'next/router';
 import Avatar from '../Avatar';
 import styles from './styles';
 import useTimeAgo from '../../hooks/useTimeAgo';
+import useDateTimeFormat from '../../hooks/useDateTimeFormat';
 
 export default function Devit({ avatar, userName, content, createdAt, img, id }) {
   const timeago = useTimeAgo(createdAt);
+  const createdAtFormated = useDateTimeFormat(createdAt);
   const router = useRouter();
 
   const handleArticleClick = (e) => {
@@ -24,7 +26,9 @@ export default function Devit({ avatar, userName, content, createdAt, img, id })
           <span> · </span>
           <Link href="/status/[id]" as={`/status/${id}`}>
             <a>
-              <time className="date">{timeago}</time>
+              <time className="date" title={createdAtFormated}>
+                {timeago}
+              </time>
             </a>
           </Link>
           <p>{content}</p>
